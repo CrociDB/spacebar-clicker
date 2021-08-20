@@ -5,6 +5,7 @@ const cheerio = require("cheerio");
 const uglify = require("uglify-es");
 const cleancss = require("clean-css");
 const html_minify = require("html-minifier").minify;
+const { exec } = require("child_process");
 
 const dir = "./build";
 
@@ -48,6 +49,8 @@ const processFile = (file) => {
 
     // Finally!
     fs.writeFileSync(dir + "/index.html", html);
+    exec("wc -c build/index.html", (err, stdout, stderr) => console.log("Finished! Size report: " + stdout));
+
 };
 
 const createFolder = (dir) => {
