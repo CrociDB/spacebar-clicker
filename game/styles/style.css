@@ -1,3 +1,43 @@
 body {
-    background-color: black;
+    user-select: none;
+    background-color: #297F87;
+    font-family: Helvetica;
 }
+
+#game {
+    max-width: 1000px;
+    margin: auto;
+}
+
+#counter {
+    text-align: center;
+    font-size: 8rem;
+    color: #F6D167;
+}
+
+.sbs {
+    display: block;
+    font-size: 1.2rem;
+    color: #FFF;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 10px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.sb1 {
+    background: #FFF7AE;
+    border: 5px solid #F6D167;
+    border-bottom-width: 15px;
+    color: #DF2E2E;
+    border-radius: 15px;
+}
+
+.sb1:active {
+    border-color: #a72e2e;
+    background: #DF2E2E;
+    color: #F6D167;
+}
+
