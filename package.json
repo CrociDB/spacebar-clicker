@@ -1,0 +1,19 @@
+{
+  "name": "spacebar-clicker",
+  "version": "1.0.0",
+  "description": "a game for js13kgames",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrociDB/spacebar-clicker.git"
+  },
+  "author": "Bruno Croci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CrociDB/spacebar-clicker/issues"
+  },
+  "homepage": "https://github.com/CrociDB/spacebar-clicker#readme"
+}
