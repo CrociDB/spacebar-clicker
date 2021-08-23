@@ -6,6 +6,7 @@ class Game {
     init() {
         // Counter
         this.cc = gId("counter");
+        this.cs = gId("per_second");
         this.counter = new Counter();
 
         // Key button
@@ -31,9 +32,17 @@ class Game {
             e.innerHTML = html;
             this.item_container.appendChild(e);
             it.dyn_element = e;
+            e.addEventListener("click", this.buy.bind(this, it));
         }
         this.item_container.removeChild(item_template);
         
+        this.update();
+
+        setInterval(this.update.bind(this), 100);
+    }
+
+    update() {
+        this.updateCounter();
         this.updateItems();
     }
     
@@ -42,38 +51,36 @@ class Game {
             let it = ITEMS[i];
 
             it.dyn_element.classList.remove("item_buyable");
-
-            // stupid workaround to remove all event listeners
-            let swap = it.dyn_element;
-            it.dyn_element = it.dyn_element.cloneNode(true);
-            swap.replaceWith(it.dyn_element);
-
             it.dyn_element.getElementsByClassName("icost")[0].innerHTML = nfmt(it.cost);
             it.dyn_element.getElementsByClassName("ilvl")[0].innerHTML = it.lvl;
 
-            if (it.cost <= this.counter.value()) {
+            if (it.cost <= this.counter.v) {
                 it.dyn_element.classList.add("item_buyable");
-                it.dyn_element.addEventListener("click", this.buy.bind(this, it));
             }
         }
     }
+    
+    updateCounter() {
+        this.cc.innerHTML = nfmt(this.counter.v);
+        this.cs.innerHTML = "per second: " + nfmt1(this.counter.va);
+    }
 
     buy(it) {
-        if (this.counter.value() < it.cost) return;
+        if (this.counter.v < it.cost) return;
 
         this.counter.spend(Math.floor(it.cost));
         it.lvl++;
         it.cost = it.cost_func(it.cost);
-        it.value = it.value_func(it.value);
+        it.value = it.value == undefined ? it.value_func(it.initial_value) : it.value_func(it.value);
 
-        this.updateCounter();
-        this.updateItems();
+        this.counter.evaluateItems();
+
+        this.update();
     }
-
+    
     setValue(v) {
         this.counter.setValue(v);
-        this.updateCounter();
-        this.updateItems();
+        this.update();
     }
 
     click() {
@@ -83,9 +90,5 @@ class Game {
 
     keydown(e) {
         if (e.code == "Space") this.click();
-    }
-
-    updateCounter() {
-        this.cc.innerHTML = this.counter.fvalue();
     }
 }

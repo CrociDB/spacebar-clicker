@@ -18,6 +18,7 @@ const repltxt = (t, vs) => {
 const fmt = (value, f) => { return (f + value).slice(-f.length); };
 const clamp = (val, min, max) => { return Math.min(Math.max(val, min), max); };
 const nfmt = (v) => Math.floor(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const nfmt1 = (v) => v.toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 // Randoms
 const randnum = (v = 1) => Math.random() * v;

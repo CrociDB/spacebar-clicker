@@ -1,6 +1,21 @@
 class Counter {
     constructor() {
         this.v = 0;
+        this.va = 0;
+
+        setInterval(this.update.bind(this), 10);
+    }
+
+    evaluateItems() {
+        this.va = 0;
+        for (let i in ITEMS) {
+            let it = ITEMS[i];
+            this.va += total_item_value(it);
+        }
+    }
+
+    update() {
+        this.v += this.va / 100; // divides by 100 because values are per seconds it runs every 0.01 seconds.
     }
 
     setValue(v) {
@@ -17,13 +32,5 @@ class Counter {
 
     addOne() {
         this.v += 1;
-    }
-
-    value() {
-        return this.v;
-    }
-
-    fvalue() {
-        return nfmt(this.v);
     }
 }

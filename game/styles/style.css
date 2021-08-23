@@ -15,6 +15,13 @@ body {
     color: #F6D167;
 }
 
+#per_second {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #8b1616;
+}
+
 .sbs {
     display: block;
     font-size: 1.2rem;
