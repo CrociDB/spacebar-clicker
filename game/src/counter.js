@@ -7,6 +7,10 @@ class Counter {
         this.v = v;
     }
 
+    spend(v) {
+        this.v -= v;
+    }
+
     add(v) {
         this.v += v;
     }
@@ -17,5 +21,9 @@ class Counter {
 
     value() {
         return this.v;
+    }
+
+    fvalue() {
+        return nfmt(this.v);
     }
 }

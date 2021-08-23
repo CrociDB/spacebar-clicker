@@ -5,8 +5,8 @@ let ITEMS = [
         cost: 50,
         value: .2,
         lvl: 0,
-        cost_func: (x) => 2 * x,
-        value_func: (x) => 1.3 * x,
+        cost_func: (x) => 1.2 * x,
+        value_func: (x) => 1.1 * x,
     },
     {
         name: "Rusty Robot Finger",
@@ -14,8 +14,8 @@ let ITEMS = [
         cost: 1000,
         value: 5,
         lvl: 0,
-        cost_func: (x) => 2 * x,
-        value_func: (x) => 1.3 * x,
+        cost_func: (x) => 1.2 * x,
+        value_func: (x) => 1.1 * x,
     },
     {
         name: "Robot Finger",
@@ -23,7 +23,7 @@ let ITEMS = [
         cost: 10000,
         value: 100,
         lvl: 0,
-        cost_func: (x) => 2 * x,
-        value_func: (x) => 1.3 * x,
+        cost_func: (x) => 1.2 * x,
+        value_func: (x) => 1.1 * x,
     },
 ];

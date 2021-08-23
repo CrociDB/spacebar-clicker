@@ -57,8 +57,22 @@ body {
     margin: 0;
     margin-bottom: 10px;
     padding: 15px;
+    opacity: .5;
 }
 
 .item span {
     display: block;
+}
+
+.item_buyable {
+    opacity: 1.0;
+}
+
+.item_buyable:hover {
+    background: #FFF7AE;
+}
+
+.item_buyable:active {
+    background-color: #DF2E2E;
+    
 }
