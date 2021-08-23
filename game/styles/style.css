@@ -41,3 +41,24 @@ body {
     color: #F6D167;
 }
 
+/* Items */
+
+#items {
+    list-style: none;
+    margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+}
+
+.item {
+    display: block;
+    border: 1px solid #F6D167;
+    border-radius: 15px;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.item span {
+    display: block;
+}

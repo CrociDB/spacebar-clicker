@@ -3,6 +3,10 @@ class Counter {
         this.v = 0;
     }
 
+    setValue(v) {
+        this.v = v;
+    }
+
     add(v) {
         this.v += v;
     }
