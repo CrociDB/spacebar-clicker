@@ -2,6 +2,7 @@ body {
     user-select: none;
     background-color: #297F87;
     font-family: Helvetica;
+    overflow: hidden;
 }
 
 #game {
@@ -81,5 +82,19 @@ body {
 
 .item_buyable:active {
     background-color: #DF2E2E;
-    
+}
+
+/* Particles */
+.particle {
+    width: auto;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+}
+
+.score {
+    font-weight: bold;
+    font-size: 1rem;
+    color: red;
 }

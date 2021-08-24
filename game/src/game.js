@@ -14,6 +14,13 @@ class Game {
         this.sb.addEventListener("click", this.click.bind(this));
         document.addEventListener("keydown", this.keydown.bind(this));
         document.setValue = this.setValue.bind(this);
+
+        // Particles
+        this.click_particle = new ParticleSystem(1.0, (p) => { 
+            p.y = lerp(p.y, p.iy - 120, 0.05); 
+            p.x = p.ix + Math.sin(p.normalized_time * 10) * 10;
+            p.alpha = p.normalized_time;
+        });
         
         // Items
         this.items = [];
@@ -85,12 +92,26 @@ class Game {
         this.update();
     }
 
-    click() {
-        this.counter.addOne();
+    click(e) {
+        let val = this.counter.addOne();
         this.updateCounter();
-    }
 
+        this.addPointParticle(e.clientX, e.clientY, val);
+    }
+    
     keydown(e) {
         if (e.code == "Space") this.click();
+    }
+    
+    // Particles
+    addPointParticle(x, y, val) {
+        let element = document.createElement('div');
+        element.textContent = "+" + val;
+        element.classList.add("particle");
+        element.classList.add("score");
+        let xr = (Math.random() * 30) - 30;
+        let yr = (Math.random() * 30) - 50;
+        this.click_particle.pushParticle(element, { x: x + xr, y: y + yr });
+        document.body.insertBefore(element, document.body.firstChild);
     }
 }

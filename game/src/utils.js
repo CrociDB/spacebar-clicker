@@ -14,9 +14,13 @@ const repltxt = (t, vs) => {
     return t;
 };
 
+// Math utils
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+const clamp01 = (val) => clamp(val, 0, 1);
+const lerp = (a, b, t) => a + (b - a) * clamp01(t);
+
 // Number utils
 const fmt = (value, f) => { return (f + value).slice(-f.length); };
-const clamp = (val, min, max) => { return Math.min(Math.max(val, min), max); };
 const nfmt = (v) => Math.floor(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 const nfmt1 = (v) => v.toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
