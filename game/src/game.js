@@ -71,7 +71,9 @@ class Game {
         this.counter.spend(Math.floor(it.cost));
         it.lvl++;
         it.cost = it.cost_func(it.cost);
-        it.value = it.value == undefined ? it.value_func(it.initial_value) : it.value_func(it.value);
+        
+        if (it.initial_value != undefined)
+            it.value = it.value == undefined ? it.value_func(it.initial_value) : it.value_func(it.value);
 
         this.counter.evaluateItems();
 

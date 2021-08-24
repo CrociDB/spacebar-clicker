@@ -2,15 +2,20 @@ class Counter {
     constructor() {
         this.v = 0;
         this.va = 0;
+        this.multiplier = 1;
 
         setInterval(this.update.bind(this), 10);
     }
 
     evaluateItems() {
         this.va = 0;
+        this.multiplier = 1;
         for (let i in ITEMS) {
             let it = ITEMS[i];
-            this.va += total_item_value(it);
+            if (it.multiplier != undefined)
+                this.multiplier *= it.multiplier * it.lvl;
+            else
+                this.va += total_item_value(it);
         }
     }
 
@@ -27,10 +32,13 @@ class Counter {
     }
 
     add(v) {
-        this.v += v;
+        let val = v * this.multiplier;
+        this.v += val;
+        return val;
     }
 
     addOne() {
-        this.v += 1;
+        this.v += this.multiplier;
+        return this.multiplier;
     }
 }
