@@ -16,6 +16,7 @@ class ParticleSystem {
             iy: pos.y,
             alpha: 0
         });
+        domElement.style['opacity'] = "0";
     }
 
     update() {

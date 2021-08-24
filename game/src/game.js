@@ -17,8 +17,8 @@ class Game {
 
         // Particles
         this.click_particle = new ParticleSystem(1.0, (p) => { 
-            p.y = lerp(p.y, p.iy - 120, 0.05); 
-            p.x = p.ix + Math.sin(p.normalized_time * 10) * 10;
+            p.y = lerp(p.y, p.iy - 110, 0.05); 
+            p.x = p.ix + Math.sin((p.ix * 5 + p.normalized_time) * 10) * 10;
             p.alpha = p.normalized_time;
         });
         
@@ -110,7 +110,7 @@ class Game {
         element.classList.add("particle");
         element.classList.add("score");
         let xr = (Math.random() * 30) - 30;
-        let yr = (Math.random() * 30) - 50;
+        let yr = (Math.random() * 30) - 40;
         this.click_particle.pushParticle(element, { x: x + xr, y: y + yr });
         document.body.insertBefore(element, document.body.firstChild);
     }
