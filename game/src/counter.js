@@ -13,10 +13,12 @@ class Counter {
         for (let i in ITEMS) {
             let it = ITEMS[i];
             if (it.multiplier != undefined)
-                this.multiplier *= it.multiplier * it.lvl;
+                this.multiplier *= it.lvl > 0 ? it.multiplier * it.lvl : 1;
             else
                 this.va += total_item_value(it);
         }
+
+        console.dir(this);
     }
 
     update() {
