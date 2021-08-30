@@ -43,10 +43,17 @@ body {
     border-radius: 15px;
 }
 
+.sb1:hover {
+    background-color: #fff1cb;
+    transition: transform 80ms ease-in;
+}
+
 .sb1:active {
     border-color: #a72e2e;
-    background: #DF2E2E;
+    background: #d17e02;
     color: #F6D167;
+    transform: scaleX(110%) scaleY(110%);
+    transition: transform 10ms ease-in;
 }
 
 /* Items */

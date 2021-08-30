@@ -11,7 +11,7 @@ class Game {
 
         // Key button
         this.sb = gId("sb");
-        this.sb.addEventListener("click", this.click.bind(this));
+        this.sb.addEventListener("mousedown", this.click.bind(this));
         document.addEventListener("keydown", this.keydown.bind(this));
         document.setValue = this.setValue.bind(this);
 
@@ -110,7 +110,7 @@ class Game {
         element.classList.add("particle");
         element.classList.add("score");
         let xr = (Math.random() * 30) - 30;
-        let yr = (Math.random() * 30) - 40;
+        let yr = (Math.random() * 30) - 20;
         this.click_particle.pushParticle(element, { x: x + xr, y: y + yr });
         document.body.insertBefore(element, document.body.firstChild);
     }
