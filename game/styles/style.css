@@ -8,6 +8,18 @@ body {
 #game {
     max-width: 1000px;
     margin: auto;
+    overflow: hidden;
+}
+
+#footer {
+    position: fixed;
+    padding: 5px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #297F87;
+    text-align: center;
+    font-size: .8rem;
 }
 
 #counter {
@@ -52,27 +64,33 @@ body {
     border-color: #a72e2e;
     background: #d17e02;
     color: #F6D167;
-    transform: scaleX(110%) scaleY(110%);
+    transform: scaleX(85%) scaleY(85%);
     transition: transform 10ms ease-in;
 }
 
 /* Items */
 
 #items {
+    margin-bottom: 0;
     list-style: none;
-    margin: 0;
+    margin-bottom: 0;
     margin-top: 1rem;
-    padding: 0;
+    padding: 10px;
+    overflow-y: auto;
 }
 
 .item {
     display: block;
     border: 1px solid #F6D167;
-    border-radius: 15px;
+    border-radius: 5px;
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 15px;
     opacity: .5;
+}
+
+.item:last-child {
+    margin-bottom: 80px;
 }
 
 .item span {

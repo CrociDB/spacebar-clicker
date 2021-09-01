@@ -42,10 +42,16 @@ class Game {
             e.addEventListener("click", this.buy.bind(this, it));
         }
         this.item_container.removeChild(item_template);
+        this.adjustSize();
+        window.addEventListener("resize", this.adjustSize.bind(this));
         
         this.update();
 
         setInterval(this.update.bind(this), 100);
+    }
+
+    adjustSize() {
+        this.item_container.style['height'] = (window.innerHeight - gId("header").offsetHeight) + "px";
     }
 
     update() {
