@@ -91,6 +91,7 @@ class Game {
         this.counter.evaluateItems();
 
         this.update();
+        this.shake();
     }
     
     setValue(v) {
@@ -119,5 +120,20 @@ class Game {
         let yr = (Math.random() * 30) - 20;
         this.click_particle.pushParticle(element, { x: x + xr, y: y + yr });
         document.body.insertBefore(element, document.body.firstChild);
+    }
+
+    // Effects
+    shake(val = 20, el = undefined) {
+        if (el == undefined) el = gId("game");
+        co(function*() {
+            for (let i = 0; i < val; i++) {
+                let x = (Math.random() * 30) - 15;
+                let y = (Math.random() * 30) - 15;
+                let z = (Math.random() * 6) - 3;
+                el.style['transform'] = "translateX(" + x + "px) translateY(" + y + "px) rotateZ(" + z + "deg)";
+                yield .01;
+            }
+            el.style['transform'] = "translateX(0px) translateY(0px) rotateZ(0deg)";
+        });
     }
 }

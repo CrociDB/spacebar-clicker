@@ -17,8 +17,6 @@ class Counter {
             else
                 this.va += total_item_value(it);
         }
-
-        console.dir(this);
     }
 
     update() {
