@@ -65,7 +65,7 @@ class Game {
 
             it.dyn_element.classList.remove("item_buyable");
             it.dyn_element.getElementsByClassName("icost")[0].innerHTML = nfmt(it.cost);
-            it.dyn_element.getElementsByClassName("ilvl")[0].innerHTML = it.lvl;
+            it.dyn_element.getElementsByClassName("ilvl")[0].innerHTML = '<span class="_ilvl">x</span>' + it.lvl;
 
             if (it.cost <= this.counter.v) {
                 it.dyn_element.classList.add("item_buyable");

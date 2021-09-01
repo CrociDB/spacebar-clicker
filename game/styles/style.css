@@ -5,6 +5,18 @@ body {
     overflow: hidden;
 }
 
+.spacebar {
+    display: inline !important;
+    background: #FFF7AE;
+    border: 2px solid #F6D167;
+    border-bottom-width: 5px;
+    color: #DF2E2E;
+    border-radius: 4px;
+    padding: 0px;
+    padding-right: 30px;
+    margin-right: 5px;
+}
+
 #game {
     max-width: 1000px;
     margin: auto;
@@ -99,6 +111,7 @@ body {
 
 .item_buyable {
     opacity: 1.0;
+    background-color: #aaf9ff;
 }
 
 .item_buyable:hover {
@@ -107,6 +120,36 @@ body {
 
 .item_buyable:active {
     background-color: #DF2E2E;
+}
+
+.ititle {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.idesc {
+    font-size: 1rem;
+}
+
+.cost {
+    margin-top: 15px;
+}
+
+.icost {
+    display: inline !important;
+}
+
+.ilvl {
+    margin-top: 0;
+    font-size: 3rem;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+._ilvl {
+    display: inline !important;
+    font-size: 1rem;
 }
 
 /* Particles */
