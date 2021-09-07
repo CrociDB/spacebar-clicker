@@ -13,6 +13,7 @@ class Game {
         this.sb = gId("sb");
         this.sb.addEventListener("mousedown", this.click.bind(this));
         document.addEventListener("keydown", this.keydown.bind(this));
+        document.addEventListener("keyup", this.keyup.bind(this));
         document.setValue = this.setValue.bind(this);
 
         // Particles
@@ -103,18 +104,35 @@ class Game {
         let val = this.counter.addOne();
         this.updateCounter();
 
-        this.addPointParticle(e.clientX, e.clientY, val);
+        if (e == undefined) {
+            let b = this.sb.getBoundingClientRect(); 
+            let r = Math.random() * 50 - 25;
+            this.addPointParticle(b.right - (b.width / 2) + r, b.top, val);
+        } else {
+            this.addPointParticle(e.clientX, e.clientY, val);
+        }
     }
     
     keydown(e) {
-        if (e.code == "Space") this.click();
+        if (e.code == "Space" && this.canclick) {
+            this.click();
+            sb.classList.add("sb_active");
+            this.canclick = false;
+        }
+    }
+     
+    keyup(e) {
+        if (e.code == "Space") {
+            this.sb.classList.remove("sb_active");
+            this.canclick = true;
+        }
     }
     
     // Particles
     addPointParticle(x, y, val) {
         let element = document.createElement('div');
         element.textContent = "+" + val;
-        element.classList.add("particle");
+        element.classList.add("particle");45
         element.classList.add("score");
         let xr = (Math.random() * 30) - 30;
         let yr = (Math.random() * 30) - 20;

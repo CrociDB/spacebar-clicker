@@ -65,6 +65,7 @@ body {
     border-bottom-width: 15px;
     color: #DF2E2E;
     border-radius: 15px;
+    transition: transform 80ms ease-in;
 }
 
 .sb1:hover {
@@ -72,7 +73,7 @@ body {
     transition: transform 80ms ease-in;
 }
 
-.sb1:active {
+.sb1:active, .sb_active {
     border-color: #a72e2e;
     background: #d17e02;
     color: #F6D167;
