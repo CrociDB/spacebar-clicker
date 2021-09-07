@@ -5,6 +5,10 @@ body {
     overflow: hidden;
 }
 
+.hide {
+    display: none !important;
+}
+
 .spacebar {
     display: inline !important;
     background: #FFF7AE;

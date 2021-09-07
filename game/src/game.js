@@ -61,15 +61,27 @@ class Game {
     }
     
     updateItems() {
+        let lastBought = 0;
         for (let i in ITEMS) {
             let it = ITEMS[i];
 
+            if (it.lvl > 0) lastBought = parseInt(i) + 1;
+
+            it.dyn_element.classList.add("hide");
             it.dyn_element.classList.remove("item_buyable");
             it.dyn_element.getElementsByClassName("icost")[0].innerHTML = nfmt(it.cost);
             it.dyn_element.getElementsByClassName("ilvl")[0].innerHTML = '<span class="_ilvl">x</span>' + it.lvl;
 
             if (it.cost <= this.counter.v) {
                 it.dyn_element.classList.add("item_buyable");
+            }
+        }
+        
+        if (this.counter.v > 0 || this.counter.va > 0)
+        {
+            for (let i = 0; i < Math.min(ITEMS.length, lastBought + 1); i++) {
+                let it = ITEMS[i];
+                it.dyn_element.classList.remove("hide");
             }
         }
     }
