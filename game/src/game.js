@@ -77,7 +77,7 @@ class Game {
             }
         }
         
-        if (this.counter.v > 0 || this.counter.va > 0)
+        if (this.counter.v > 9 || this.counter.va > 0)
         {
             for (let i = 0; i < Math.min(ITEMS.length, lastBought + 1); i++) {
                 let it = ITEMS[i];
