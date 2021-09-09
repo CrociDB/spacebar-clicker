@@ -87,7 +87,7 @@ class Game {
     }
     
     updateCounter() {
-        this.cc.innerHTML = nfmt(this.counter.v);
+        this.cc.innerHTML = nfmt2(this.counter.v);
         this.cs.innerHTML = "per second: " + nfmt1(this.counter.va);
     }
 
