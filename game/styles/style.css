@@ -87,7 +87,7 @@ body {
 .sb1 {
     border: 5px solid #483D21;
     border-bottom-width: 25px;
-    color: #483D21;
+    color: #8a7d5a;
     border-radius: 15px;
     transition: transform 80ms ease-in;
     
@@ -97,7 +97,7 @@ body {
 
 .sb1:hover {
     transition: transform 80ms ease-in;
-    transform: scaleY(115%);
+    color: #483D21;
 }
 
 .sb1:active, .sb_active {
