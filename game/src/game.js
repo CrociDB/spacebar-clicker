@@ -92,19 +92,24 @@ class Game {
             it.dyn_element.classList.remove("item_buyable");
             it.dyn_element.getElementsByClassName("icost")[0].innerHTML = nfmt(it.cost);
             it.dyn_element.getElementsByClassName("ilvl")[0].innerHTML = '<span class="_ilvl">x</span>' + it.lvl;
+            it.dyn_element.classList.remove("item_last_child");
 
             if (it.cost <= this.counter.v) {
                 it.dyn_element.classList.add("item_buyable");
             }
         }
         
+        let last_item = null;
         if (this.counter.v > 9 || this.counter.va > 0)
         {
             for (let i = 0; i < Math.min(ITEMS.length, lastBought + 1); i++) {
                 let it = ITEMS[i];
                 it.dyn_element.classList.remove("hide");
+                last_item = it.dyn_element;
             }
         }
+
+        if (last_item != null) last_item.classList.add("item_last_child");
     }
     
     updateCounter() {

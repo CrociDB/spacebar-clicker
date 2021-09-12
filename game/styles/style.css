@@ -130,7 +130,7 @@ body {
     background-color: #e9e9e1;
 }
 
-.item:last-child {
+.item_last_child {
     margin-bottom: 80px;
 }
 
