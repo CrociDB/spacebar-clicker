@@ -143,6 +143,8 @@ class Game {
     buy(it) {
         if (this.counter.v < it.cost) return;
 
+        playaudio(SOUNDS.buy); 
+
         this.counter.spend(Math.floor(it.cost));
         it.lvl++;
         it.cost = it.cost_func(it.cost);
@@ -174,6 +176,7 @@ class Game {
     click(e) {
         let val = this.counter.addOne();
         this.updateCounter();
+        playaudio(SOUNDS.click); 
 
         if (e == undefined) {
             let b = this.sb.getBoundingClientRect(); 

@@ -80,7 +80,7 @@ const playaudio = (a) => {
         audio_index = (audio_index + 1) % audio_player.length;
 
         audio_player[audio_index].pause();
-        audio_player[audio_index].src = a;
+        audio_player[audio_index].src = a[Math.floor(Math.random() * a.length)];
         audio_player[audio_index].play();
     }
 };
