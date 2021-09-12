@@ -40,7 +40,7 @@ class Game {
             let it = ITEMS[i];
             let html = item_template.innerHTML
             .replace("%1", it.name)
-            .replace("%2", it.description)
+            .replace("%2", it.getDescription(it))
             .replace("%3", it.cost)
             .replace("%4", it.lvl);
 
@@ -56,6 +56,7 @@ class Game {
         window.addEventListener("resize", this.adjustSize.bind(this));
 
         this.loadGame();
+        this.updateItemDescriptions();
         this.counter.evaluateItems();
         this.checkCurrentLevel();
         this.update();
@@ -95,7 +96,7 @@ class Game {
 
             it.dyn_element.classList.add("hide");
             it.dyn_element.classList.remove("item_buyable");
-            it.dyn_element.getElementsByClassName("icost")[0].innerHTML = nfmt(it.cost);
+            it.dyn_element.getElementsByClassName("icost")[0].innerHTML = nfmt2(it.cost);
             it.dyn_element.getElementsByClassName("ilvl")[0].innerHTML = '<span class="_ilvl">x</span>' + it.lvl;
             it.dyn_element.classList.remove("item_last_child");
 
@@ -116,6 +117,14 @@ class Game {
 
         if (last_item != null) last_item.classList.add("item_last_child");
     }
+
+    updateItemDescriptions() {
+        for (let i in ITEMS) {
+            let it = ITEMS[i];
+
+            it.dyn_element.querySelector('.idesc').innerHTML = it.getDescription(it);
+        }
+    }
     
     updateCounter() {
         this.cc.firstChild.innerText = nfmt2(this.counter.v);
@@ -125,15 +134,17 @@ class Game {
     updateParticles() {
         let lvl = LEVELS[this.currentLevel];
         if (lvl.rain > 0) {
-            if (this.frameCounter % (21 - lvl.rain) == 0) {
-                let x = Math.random() * window.innerWidth;
-                let y = 0;
-    
-                let element = document.createElement('div');
-                element.classList.add("spacebar");
-                element.classList.add("spacebar_particle");
-                this.rain_particle.pushParticle(element, { x: x, y: y});
-                document.body.insertBefore(element, document.body.firstChild);
+            if (this.frameCounter % (21 - clamp(lvl.rain, 0, 20)) == 0) {
+                for (let i = 0; i < Math.floor(lvl.rain / 21) + 1; i++) {
+                    let x = Math.random() * window.innerWidth;
+                    let y = 0;
+        
+                    let element = document.createElement('div');
+                    element.classList.add("spacebar");
+                    element.classList.add("spacebar_particle");
+                    this.rain_particle.pushParticle(element, { x: x, y: y});
+                    document.body.insertBefore(element, document.body.firstChild);
+                }
             }
         }
 
@@ -153,6 +164,7 @@ class Game {
             it.value = it.value == undefined ? it.value_func(it.initial_value) : it.value_func(it.value);
 
         this.counter.evaluateItems();
+        this.updateItemDescriptions();
 
         this.checkCurrentLevel();
         this.update();
@@ -226,8 +238,11 @@ class Game {
 
         this.counter.v = savedata.v;
         for (let i in ITEMS) {
+            if (i >= savedata.items.length) break;
+
             ITEMS[i].cost = savedata.items[i].cost;
             ITEMS[i].lvl = savedata.items[i].lvl;
+            ITEMS[i].value = savedata.items[i].value;
         }
 
         this.reloading = false;
@@ -238,7 +253,8 @@ class Game {
         for (let i in ITEMS) {
             items[i] = {
                 cost: ITEMS[i].cost,
-                lvl: ITEMS[i].lvl
+                lvl: ITEMS[i].lvl,
+                value: ITEMS[i].value
             };
         }
 

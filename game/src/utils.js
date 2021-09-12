@@ -24,7 +24,7 @@ const NUBMER_FORMATS = ['M', 'B', 'T', 'Q', 'Qui', 'S', 'Sp']
 
 const fmt = (value, f) => { return (f + value).slice(-f.length); };
 const nfmt = (v) => Math.floor(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-const nfmt1 = (v) => v.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const nfmt1 = (v) => v.toFixed(3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 const nfmt2 = (v) => {
     if (v < 1000000) {
         return nfmt(v);
@@ -83,15 +83,4 @@ const playaudio = (a) => {
         audio_player[audio_index].src = a[Math.floor(Math.random() * a.length)];
         audio_player[audio_index].play();
     }
-};
-
-// Fade
-const fadeIn  = () => {
-    gId("fadeDiv").classList.add("fadehid");
-    playaudio(SOUNDS.fade_in);
-};
-
-const fadeOut = () => {
-    gId("fadeDiv").classList.remove("fadehid");
-    playaudio(SOUNDS.fade_out);
 };
