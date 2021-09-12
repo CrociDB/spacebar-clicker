@@ -4,6 +4,8 @@ class Game {
     }
 
     init() {
+        this.currentLevel = 0;
+
         // Counter
         this.cc = gId("counter");
         this.cs = gId("per_second");
@@ -20,6 +22,13 @@ class Game {
         this.click_particle = new ParticleSystem(1.0, (p) => { 
             p.y = lerp(p.y, p.iy - 110, 0.05); 
             p.x = p.ix + Math.sin((p.ix * 5 + p.normalized_time) * 10) * 10;
+            p.alpha = p.normalized_time;
+        });
+
+        this.rain_particle = new ParticleSystem(3.0, (p) => { 
+            p.y += 3; 
+            p.x = p.ix + Math.sin((p.ix * 5 + p.normalized_time) * 10) * 10;
+            p.rot = Math.sin(p.normalized_time * 30) * 10;
             p.alpha = p.normalized_time;
         });
         
@@ -49,6 +58,7 @@ class Game {
         this.update();
 
         setInterval(this.update.bind(this), 100);
+        this.frameCounter = 0;
     }
 
     adjustSize() {
@@ -58,6 +68,7 @@ class Game {
     update() {
         this.updateCounter();
         this.updateItems();
+        this.updateParticles();
     }
     
     updateItems() {
@@ -91,6 +102,24 @@ class Game {
         this.cs.innerHTML = "per second: " + nfmt1(this.counter.va);
     }
 
+    updateParticles() {
+        let lvl = LEVELS[this.currentLevel];
+        if (lvl.rain > 0) {
+            if (this.frameCounter % (20 - lvl.rain) == 0) {
+                let x = Math.random() * window.innerWidth;
+                let y = 0;
+    
+                let element = document.createElement('div');
+                element.classList.add("spacebar");
+                element.classList.add("spacebar_particle");
+                this.rain_particle.pushParticle(element, { x: x, y: y});
+                document.body.insertBefore(element, document.body.firstChild);
+            }
+        }
+
+        this.frameCounter++;
+    }
+
     buy(it) {
         if (this.counter.v < it.cost) return;
 
@@ -102,6 +131,14 @@ class Game {
             it.value = it.value == undefined ? it.value_func(it.initial_value) : it.value_func(it.value);
 
         this.counter.evaluateItems();
+
+        // Check current level
+        for (let i in LEVELS) {
+            let lvl = LEVELS[i];
+            if (this.counter.va > lvl.psvalue) {
+                this.currentLevel = i;
+            }
+        }
 
         this.update();
         this.shake();

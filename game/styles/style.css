@@ -80,8 +80,7 @@ body {
 .sb1:active, .sb_active {
     border-color: #a72e2e;
     background: #d17e02;
-    color: #F6D167;
-    transform: scaleX(85%) scaleY(85%);
+    color: #F6D167;transform: scaleX(85%) scaleY(85%);
     transition: transform 10ms ease-in;
 }
 
@@ -171,4 +170,15 @@ body {
     font-size: 1.3rem;
     color: red;
     z-index: 100;
+}
+
+.spacebar_particle {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -100;
+
+    width: 5px;
+    height: 15px;
 }

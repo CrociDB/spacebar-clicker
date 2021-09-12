@@ -14,7 +14,8 @@ class ParticleSystem {
             y: pos.y,
             ix: pos.x,
             iy: pos.y,
-            alpha: 0
+            alpha: 0,
+            rot: 0
         });
         domElement.style['opacity'] = "0";
     }
@@ -26,7 +27,7 @@ class ParticleSystem {
             p.life -= 0.016;
             p.normalized_time = 1.0 - p.life / this.lifetime;
             this.func(p);
-            p.element.style['transform'] = "translateX(" + p.x + "px) translateY(" + p.y + "px)"
+            p.element.style['transform'] = "translateX(" + p.x + "px) translateY(" + p.y + "px) rotateZ(" + p.rot + "deg)";
             p.element.style['opacity'] = "" + (1.0 - p.alpha);
             
             if (p.life <= 0) remove.push(i);
