@@ -35,7 +35,7 @@ const nfmt2 = (v) => {
     {
         nv *= 1000;
         if (v < nv) {
-            return nfmt1(v / (nv / 1000)) + " " + NUBMER_FORMATS[i];
+            return nfmt1(v / (nv / 1000)) + NUBMER_FORMATS[i];
         }
     }
 }

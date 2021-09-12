@@ -99,13 +99,13 @@ class Game {
     
     updateCounter() {
         this.cc.innerHTML = nfmt2(this.counter.v);
-        this.cs.innerHTML = "per second: " + nfmt1(this.counter.va);
+        this.cs.innerHTML = "per second: " + (this.counter.va < 1000 ? nfmt1(this.counter.va) : nfmt2(this.counter.va));
     }
 
     updateParticles() {
         let lvl = LEVELS[this.currentLevel];
         if (lvl.rain > 0) {
-            if (this.frameCounter % (20 - lvl.rain) == 0) {
+            if (this.frameCounter % (21 - lvl.rain) == 0) {
                 let x = Math.random() * window.innerWidth;
                 let y = 0;
     

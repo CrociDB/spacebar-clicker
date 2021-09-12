@@ -61,46 +61,37 @@ let LEVELS = [
     {
         psvalue: 0,
         rain: 0,
-        btclass: "sb1",
     },
     {
         psvalue: 10,
         rain: 5,
-        btclass: "sb1",
     },
     {
         psvalue: 100,
         rain: 10,
-        btclass: "sb2",
     },
     {
         psvalue: 500,
         rain: 12,
-        btclass: "sb2",
     },
     {
         psvalue: 1000,
         rain: 15,
-        btclass: "sb2",
     },
     {
         psvalue: 5000,
         rain: 17,
-        btclass: "sb2",
     },
     {
         psvalue: 10000,
         rain: 18,
-        btclass: "sb2",
     },
     {
         psvalue: 50000,
         rain: 19,
-        btclass: "sb2",
     },
     {
         psvalue: 100000,
         rain: 20,
-        btclass: "sb2",
     },
 ];
