@@ -54,7 +54,10 @@ class Game {
         this.item_container.removeChild(item_template);
         this.adjustSize();
         window.addEventListener("resize", this.adjustSize.bind(this));
-        
+
+        this.loadGame();
+        this.counter.evaluateItems();
+        this.checkCurrentLevel();
         this.update();
 
         setInterval(this.update.bind(this), 100);
@@ -79,6 +82,8 @@ class Game {
         this.updateItems();
         this.updateParticles();
         this.adjustSize();
+
+        this.saveGame();
     }
     
     updateItems() {
@@ -147,16 +152,18 @@ class Game {
 
         this.counter.evaluateItems();
 
-        // Check current level
+        this.checkCurrentLevel();
+        this.update();
+        this.shake();
+    }
+
+    checkCurrentLevel() {
         for (let i in LEVELS) {
             let lvl = LEVELS[i];
             if (this.counter.va > lvl.psvalue) {
                 this.currentLevel = i;
             }
         }
-
-        this.update();
-        this.shake();
     }
     
     setValue(v) {
@@ -190,6 +197,56 @@ class Game {
             this.sb.classList.remove("sb_active");
             this.canclick = true;
         }
+    }
+
+    // Load/Save
+    resetGameSure() {
+        if (window.confirm("Are you sure you want to reset all the game data?")) {
+            this.resetGame();
+        }
+    }
+
+    resetGame() {
+        this.reloading = true;
+        window.localStorage.removeItem("spacebar_clicker_game");
+        window.location.reload(true);
+    }
+
+    loadGame() {
+        let savegamestr = window.localStorage.getItem("spacebar_clicker_game");
+        if (savegamestr == undefined || savegamestr == null) return;
+
+        let savedata = JSON.parse(savegamestr);
+        if (savedata.empty) return;
+
+        console.dir(savedata);
+
+        this.counter.v = savedata.v;
+        for (let i in ITEMS) {
+            ITEMS[i].cost = savedata.items[i].cost;
+            ITEMS[i].lvl = savedata.items[i].lvl;
+        }
+
+        this.reloading = false;
+    }
+
+    saveGame() {
+        let items = [];
+        for (let i in ITEMS) {
+            items[i] = {
+                cost: ITEMS[i].cost,
+                lvl: ITEMS[i].lvl
+            };
+        }
+
+        let savedata = {
+            empty: false,
+            v: this.counter.v,
+            items: items
+        };
+
+        if (!this.reloading)
+            window.localStorage.setItem("spacebar_clicker_game", JSON.stringify(savedata));
     }
     
     // Particles
