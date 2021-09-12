@@ -68,6 +68,9 @@ const co = (f) => {
     next();
 };
 
+// Mobile
+const mobile = () => navigator.userAgent.match("Mobile");
+
 // Audio stuff
 const audio_player = [new Audio(), new Audio()];
 let audio_index = 0;

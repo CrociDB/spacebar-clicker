@@ -62,6 +62,15 @@ class Game {
     }
 
     adjustSize() {
+        if (mobile()) {
+            this.cc.style['font-size'] = (8 - (this.cc.innerText.length / 2)) + "rem";
+        } else {
+            this.cc.style['font-size'] = (10 - (this.cc.innerText.length / 3)) + "rem";
+        }
+
+        let size = (this.cc.clientHeight - this.cc.firstChild.clientHeight) / 2;
+        this.cc.firstChild.style['transform'] = "translateY(" + size + "px)"
+
         this.item_container.style['height'] = (window.innerHeight - gId("header").offsetHeight) + "px";
     }
 
@@ -69,6 +78,7 @@ class Game {
         this.updateCounter();
         this.updateItems();
         this.updateParticles();
+        this.adjustSize();
     }
     
     updateItems() {
@@ -98,7 +108,7 @@ class Game {
     }
     
     updateCounter() {
-        this.cc.innerHTML = nfmt2(this.counter.v);
+        this.cc.firstChild.innerText = nfmt2(this.counter.v);
         this.cs.innerHTML = "per second: " + (this.counter.va < 1000 ? nfmt1(this.counter.va) : nfmt2(this.counter.va));
     }
 

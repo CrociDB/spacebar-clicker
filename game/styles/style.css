@@ -56,6 +56,13 @@ body {
     text-align: center;
     font-size: 8rem;
     color: #483D21;
+    height: 8rem;
+    font-weight: bold;
+}
+
+#counter span {
+    display: block;
+    text-align: center;
 }
 
 #per_second {
