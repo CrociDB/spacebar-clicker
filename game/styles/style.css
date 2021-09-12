@@ -133,15 +133,18 @@ body {
 
 .item_buyable {
     opacity: 1.0;
-    background: #E5E8D1;
+    background: rgb(252,255,229);
+    background: linear-gradient(180deg, rgba(252,255,229,1) 0%, rgba(229,232,209,1) 100%);
 }
 
 .item_buyable:hover {
-    background-color: #F9FBB2;
+    background: rgb(254,255,219);
+    background: linear-gradient(180deg, rgba(254,255,219,1) 0%, rgba(249,251,178,1) 100%);
 }
 
 .item_buyable:active {
-    background-color: #e9e9e1;
+    background: rgb(223,227,192);
+    background: linear-gradient(180deg, rgba(223,227,192,1) 0%, rgba(183,186,156,1) 100%);
 }
 
 .ititle {
