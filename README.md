@@ -6,4 +6,10 @@ It was made for #js13kgames 2021 and can be played at the [competition website](
 
 ## Tools
 
-Run `npm run test` to test the game or `npm run build` to build a minifed version of game in a single html file.
+In order to build and test locally, it's necessary to have **nodejs** and **npm** installed and install the dependencies:
+
+```
+npm install && npm install -G http-server
+```
+
+Then run `npm run test` to test the game or `npm run build` to build a minified version of game in a single html file.
